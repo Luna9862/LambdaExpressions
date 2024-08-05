@@ -13,7 +13,7 @@ public class Main {
             System.out.println("3. Find books by year");
             System.out.println("4. Find books by author");
             System.out.println("5. Find book with most pages");
-            System.out.println("6. Find books with more than n pages");
+            System.out.println("6. Find books with more than 350 pages");
             System.out.println("7. Print all book titles sorted");
             System.out.println("8. Find books by category");
             System.out.println("9. Loan a book");
@@ -58,9 +58,7 @@ public class Main {
                     System.out.println("Book with most pages: " + library.findBookWithMostPages());
                     break;
                 case 6:
-                    System.out.println("Enter number of pages:");
-                    int n = scanner.nextInt();
-                    library.findBooksWithMoreThanNPages(n).forEach(System.out::println);
+                    library.findBooksWithMoreThanNPages(350).forEach(System.out::println);
                     break;
                 case 7:
                     library.getAllBookTitlesSorted().forEach(System.out::println);
@@ -86,7 +84,7 @@ public class Main {
                     System.out.println("Enter library card number:");
                     String cardNumber = scanner.nextLine();
                     User user = new User(name, cardNumber);
-                    System.out.println("User " + name + " registered.");
+                    System.out.println("User " + name + " registered. Welcome!");
                     break;
                 case 12:
                     System.out.println("Exiting...");

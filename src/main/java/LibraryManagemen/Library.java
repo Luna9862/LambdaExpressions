@@ -13,7 +13,7 @@ public class Library {
 
     public void addBook(Book book) {
         books.add(book);
-        System.out.println("Added: " + book);
+        System.out.println("Added Book: " + book);
     }
 
     public void removeBook(String title) {
@@ -60,12 +60,17 @@ public class Library {
 
     public void loanBook(String title) {
         books.stream()
-                .filter(book -> book.getTitle().equalsIgnoreCase(title) && !book.isOnLoan())
+                .filter(book -> book.getTitle().equalsIgnoreCase(title))
                 .findFirst()
-                .ifPresent(book -> {
-                    book.setOnLoan(true);
-                    System.out.println("Book loaned: " + book);
-                });
+                .ifPresentOrElse(book -> {
+                    if (book.isOnLoan()) {
+                        System.out.println("Cannot loan out the book. It is already on loan: " + book);
+                    } else {
+                        book.setOnLoan(true);
+                        System.out.println("Book loaned: " + book);
+                        System.out.println("Warning: If the book is not returned within two weeks, a late fee of $10 will be applied.");
+                    }
+                }, () -> System.out.println("Book not found with title: " + title));
     }
 
     public void returnBook(String title) {
